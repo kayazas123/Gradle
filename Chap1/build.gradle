@@ -1,16 +1,15 @@
+def file = new File('data.sql')
 
-import static java.util.Calendar.*;
+task handleFile{
+    onlyIf(new Spec(){
+        boolean isSatisfiedBy(task){
+            println '2'+file.exists()
+            file.exists()
+        }
+    })
 
-task  longRunning {
-    onlyIf{
-        task -> 
-            def now = Calendar.instance
-            def weekDay = now[DAY_OF_WEEK]
-            def weekDayInWeekend = weekDay in [SATURDAY,SUNDAY]
-            return weekDayInWeekend
-    }
 
     doLast {
-        println "Do long running stuff"
+        println "Work with file ${file.name}"
     }
 }
