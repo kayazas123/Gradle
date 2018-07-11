@@ -1,22 +1,21 @@
 
-project.description="Test project desc"
-project.group="Test project group"
+task logLevels << {
+    logger.debug 'debug: Most verbose logging level'
+    logger.log LogLevel.DEBUG, 'debug Most verbose logging level'
 
-//Custom property
+    logger.info 'info: Use for information message'
+    logger.log LogLevel.INFO,'info: User for inforation messages'
 
-ext.customProperty = 'Custom prop'
+    logger.lifecycle 'lifecycle:Progress information messages'
+    logger.log LogLevel.LIFECYCLE,'lifecycle: Progress information messages'
 
-task defaultPropertiesTest << {
-    println "Project: $project"
-    println "Project name: $name"
-    println "Project Path: $path"
-    println "ProjectDir: $projectDir"
-    println "BulidDir: $buildDir"
-    println "Version: $version"
-    println "Project Group: $project.group"
-    println "Project Desc: $project.description"
-    println "Ant Builder: $ant"
-    println "Custom property:$project.customProperty"
+    logger.quiet 'quiet:this is important but not an error'
+    logger.log LogLevel.QUIET,'quiet:This is important but not an error'
 
+    logger.error 'error:Use for errors'
+    logger.log LogLevel.ERROR,'error:Use for errors'
 
+    //Execute gradle logLevels
+    //Execute gradle --info logLevels to print info messages
+    //Execute gradle --debug logLevels to print detailed debug messages
 }
