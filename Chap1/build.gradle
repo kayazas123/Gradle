@@ -5,11 +5,8 @@ task  longRunning {
     onlyIf{
         task -> 
             def now = Calendar.instance
-            println now
             def weekDay = now[DAY_OF_WEEK]
-            println weekDay
             def weekDayInWeekend = weekDay in [SATURDAY,SUNDAY]
-            println weekDayInWeekend
             return weekDayInWeekend
     }
 

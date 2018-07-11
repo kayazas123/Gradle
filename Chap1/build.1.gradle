@@ -1,0 +1,14 @@
+def file = new File('data.sql')
+
+task handleFile{
+    onlyIf(new Spec(){
+        boolean isSatisfiedBy(task){
+            file.exists()
+        }
+    })
+
+
+    doLast {
+        println "Work with file ${file.name}"
+    }
+}
