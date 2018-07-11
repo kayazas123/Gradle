@@ -1,15 +1,22 @@
-def file = new File('data.sql')
 
-task handleFile{
-    onlyIf(new Spec(){
-        boolean isSatisfiedBy(task){
-            println '2'+file.exists()
-            file.exists()
-        }
-    })
+project.description="Test project desc"
+project.group="Test project group"
+
+//Custom property
+
+ext.customProperty = 'Custom prop'
+
+task defaultPropertiesTest << {
+    println "Project: $project"
+    println "Project name: $name"
+    println "Project Path: $path"
+    println "ProjectDir: $projectDir"
+    println "BulidDir: $buildDir"
+    println "Version: $version"
+    println "Project Group: $project.group"
+    println "Project Desc: $project.description"
+    println "Ant Builder: $ant"
+    println "Custom property:$project.customProperty"
 
 
-    doLast {
-        println "Work with file ${file.name}"
-    }
 }
